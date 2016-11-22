@@ -1,0 +1,71 @@
+<%layout("/common/layout.html") { %>
+<!-- [START 账号管理] -->
+<!-- [账号管理] -->
+<div id="include-listview-banners" class="content">
+    <h2>账号管理</h2>
+    <fieldset style="background: #252525;">
+        <table id="table_listView" class="zebra">
+            <thead>
+            <tr>
+                <th width="10%">用户名</th>
+                <th width="15%">昵称</th>
+                <th width="25%">创建时间</th>
+                <th width="10%">激活状态</th>
+                <th width="10%">账号类型</th>
+                <th width="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (item in list!) {%>
+            <tr>
+                <td>${item.yhm}</td>
+                <td>${item.nickname}</td>
+                <td>${item.create_time, dateFormat='yyyy-MM-dd hh:mm:ss'}</td>
+                <td>${item.zhzt}</td>
+                <td>${item.zhlx}</td>
+                <td>
+                <% if ('0' == item.cz!) { %>
+                    <a style="color:#00BDFF;" href="javascript:void(0)" onclick="toUpdateZhzt(${item.yhid!}, '1', '激活')">激活</a>
+                <% } else if ('1' == item.cz!) { %>
+                    <a style="color:#00BDFF;" href="javascript:void(0)" onclick="toUpdateZhzt(${item.yhid!}, '3', '冻结')">冻结</a>
+                    <a style="color:#00BDFF;" href="javascript:void(0)" onclick="toUpdateZhzt(${item.yhid!}, '2', '删除')">删除</a>
+                <% } else if ('2' == item.cz!) { %>
+                    <a style="color:#00BDFF;" href="javascript:void(0)" onclick="toUpdateZhzt(${item.yhid!}, '0', '启用')">启用</a>
+                <% } else if ('3' == item.cz!) { %>
+                    <a style="color:#00BDFF;" href="javascript:void(0)" onclick="toUpdateZhzt(${item.yhid!}, '1', '解冻')">解冻</a>
+                <% } %>
+                </td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+        <!-- 表头  - START -->
+        <div class="pagin">
+        ${page.pageStr}
+        </div>
+    </fieldset>
+    <!-- 表内容 - END --> 
+    <!-- End of fieldset -->
+</div>
+<!-- [END 账号管理 一览] -->
+<script type="text/javascript">
+    function toUpdateZhzt(yhid, zhzt, cz) {
+    	layer.confirm('确认要' + cz + '吗？',{btn: ['是','否'] },function(){
+            $.ajax({
+            	url:"/system_manage/zhgl/toUpdateZt",
+            	type:"POST",
+            	dataType:"json",
+            	data:{"yhid":yhid, "zhzt":zhzt},
+            	success:function(data) {
+            		if (data.errormessage != null && data.errormessage != '') {
+            			layer.msg(data.errormessage);
+            		} else {
+            			layer.msg(cz + "成功！");
+            			window.location.href = "/system_manage/zhgl/";
+            		}
+            	}
+            });
+    	});
+    }
+</script>
+<%}%>

@@ -1,0 +1,93 @@
+<% var v = session.version!"201510271";%>
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>小小马驹科技</title>
+        <style type="text/css" media="all">
+        /* @import url(../css/index/index.css); */
+            img {behavior:url('/js/index/iepngfix.htc') !important;}
+        </style>
+    
+        <link rel="stylesheet" type="text/css" href="/css/index.css" />
+       <!--  <link rel="stylesheet" type="text/css" href="/css/bannerListView.css" /> -->
+        <link rel="stylesheet" type="text/css" href="/css/news-publish.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    
+    
+        <script src="/js/index/jquery.js" type="text/javascript"></script>
+        <script src="/js/index/jquery_ui.js" type="text/javascript"></script>
+        <script src="/js/index/wysiwyg.js" type="text/javascript"></script>
+        <script src="/js/index/functions.js" type="text/javascript"></script>
+        <script src="/js/index/index.js" type="text/javascript"></script>
+    
+        <!-- 文件上传  -->
+        <script src="/js/fileupload/myuploadfile.js" type="text/javascript"></script>
+        <script src="/js/layer/layer.js"></script>
+        <script src="/js/layer/extend/layer.ext.js"></script>
+        <script src="/js/laydate/laydate.js"></script>
+
+        <!-- [jquery-1.11.3.min.js]此文件必须，否则layer不能正常运行 -->
+        <script src="/js/jquery-1.11.3.min.js?v=${v}"></script>
+        <script src="/js/layer/layer.js?v=${v}"></script>
+        <!--  
+        <link rel="stylesheet" href="/css/select.css?v=${v}" />
+        <link rel="stylesheet" href="/css/font-awesome.css?v=${v}"/>
+        <link rel="stylesheet" type="text/css"	href="/easyui/themes/default/easyui.css?v=${v}">
+        <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css?v=${v}">
+        <link rel="stylesheet" type="text/css" href="/easyui/demo/demo.css?v=${v}">
+        <link rel="stylesheet" href="/css/bootstrap.min.css?v=${v}" />
+        <link rel="stylesheet" href="/css/fileinput.min.css?v=${v}" />
+        <link rel="stylesheet" href="/css/chosen.css?v=${v}" />
+        <link rel="stylesheet" href="/css/buttons.css?v=${v}" /> -->
+        <script src="/js/common.js?v=${v}"></script>
+        <script type="text/javascript">
+        String.prototype.startsWith = function(str) {
+    	    return this.indexOf(str) === 0;
+    	};
+        String.prototype.endsWith = function(str) {
+    	    return this.indexOf(str) === this.length - str.length;
+    	};
+        </script>
+    </head>
+    <body>
+        <!--  <%//include("/common/top.html"){} %>
+        <div class="main">
+              <%//include("/common/left.html"){} %>
+            <div class="right">
+                
+            </div>
+        </div>-->
+         ${layoutContent}
+        <!-- 
+        <script src="/js/vendor/jquery.ui.widget.js?v=${v}"></script>
+        <script src="/js/jquery.iframe-transport.js?v=${v}"></script>
+        <script src="/js/jquery.fileupload.js?v=${v}"></script>
+        <script src="/js/jquery.exif.js?v=${v}"></script>
+        <script src="/js/select-ui.min.js?v=${v}"></script>
+        <script src="/js/layer/extend/layer.ext.js?v=${v}"></script>
+        <script src="/js/easyTree.js?v=${v}"></script>
+        <script src="/js/laydate/laydate.js?v=${v}"></script>
+        <script src="/js/bootstrap.min.js?v=${v}"></script>
+        <script src="/js/fileinput.min.js?v=${v}"></script>
+        <script src="/js/fileinput_locale_zh.js?v=${v}"></script>
+        <script src="/js/chosen.jquery.min.js?v=${v}"></script>
+
+        [if lte IE 8]><script type="text/javascript" src="/js/excanvas.js"></script><![endif]
+        <script src="/js/check.js?v=${v}"></script>
+        <script type="text/javascript" src="/easyui/jquery.easyui.min.js?v=${v}"></script>
+        <script type="text/javascript" src="/easyui/locale/easyui-lang-zh_CN.js?v=${v}"></script>
+
+    <%if (!isEmpty(js)) {%>
+        <%for (_js in js) {
+          if(strutil.index(_js,"api.map.baidu.com")<0){
+        %>
+           <script type="text/javascript" src="${_js}?v=${v}"></script>
+        <%}else{%>
+           <script type="text/javascript" src="${_js}"></script>
+           <%}%>
+        <%}%>
+    <%}%> -->
+    </body>
+</html>

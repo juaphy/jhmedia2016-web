@@ -1,0 +1,84 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- 浏览器选项卡图标 -->
+<link rel="shortcut icon" href="/images/main/favicon.png" />
+
+<meta name="description" content="1" />
+<meta name="keywords" content="1" />
+<link type="text/css" rel="stylesheet" href="/css/style.css" />
+<link type="text/css" rel="stylesheet" href="/css/index.css" />
+<script charset="utf-8" src="/js/v.js"></script>
+<script async="async" src="/js/analytics.js"></script>
+<script src="js/hm.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/public.js"></script>
+<script type="text/javascript" src="/js/jquery1.42.min.js"></script>
+<script type="text/javascript" src="/js/jquery.SuperSlide.2.1.js"></script>
+<script type="text/javascript">
+    var system = {
+        win : false,
+        mac : false,
+        xll : false
+    };
+
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    if (system.win || system.mac || system.xll) {
+    } else {
+        window.location.href = "#";
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".side ul li").hover(function() {
+            $(this).find(".sidebox").stop().animate({
+                "width" : "150px"
+            }, 200).css({
+                "opacity" : "1",
+                "filter" : "Alpha(opacity=100)",
+                "background" : "#d80001"
+            })
+        }, function() {
+            $(this).find(".sidebox").stop().animate({
+                "width" : "54px"
+            }, 200).css({
+                "opacity" : "0.8",
+                "filter" : "Alpha(opacity=80)",
+                "background" : "#000"
+            })
+        });
+
+    });
+    //回到顶部
+    function goTop() {
+        $('html,body').animate({
+            'scrollTop' : 0
+        }, 600); //滚回顶部的时间，越小滚的速度越快~
+    }
+</script>
+
+<!--
+<script type="text/javascript" src="js/classie.js"></script>
+-->
+<script>
+    function init() {
+        window
+                .addEventListener(
+                        'scroll',
+                        function(e) {
+                            var distanceY = window.pageYOffset
+                                    || document.documentElement.scrollTop, shrinkOn = 120, header = document
+                                    .querySelector(".nav");
+                            if (distanceY > shrinkOn) {
+                                classie.add(header, "smaller");
+                            } else {
+                                if (classie.has(header, "smaller")) {
+                                    classie.remove(header, "smaller");
+                                }
+                            }
+                        });
+    }
+    window.onload = init();
+</script>

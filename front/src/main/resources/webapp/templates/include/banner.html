@@ -1,0 +1,44 @@
+<!-- 滚动显示图片 START -->
+<div class="banner">
+    <div class="mBan2">
+        <div id="slideBox" class="slideBox">
+            <div class="hd">
+                <ul>
+                    <li class=""></li>
+                    <li class=""></li>
+                    <li class=""></li>
+                    <li class="on"></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="bd" id="bd_div_id">
+                <ul id="bd_div_id_ul">
+                    <li class="bd_div_id_ul_li">
+                        <a href="#" target="_blank">
+                            <img src="/images/index/banner-01.jpg" class="bd_div_id_ul_li_img">
+                        </a>
+                    </li>
+                    <li class="bd_div_id_ul_li">
+                        <a href="#" target="_blank">
+                            <img src="/images/index/banner-01.jpg" class="bd_div_id_ul_li_img">
+                        </a>
+                    </li>
+                    <li class="bd_div_id_ul_li">
+                        <a href="#" target="_blank">
+                            <img src="/images/index/banner-01.jpg" class="bd_div_id_ul_li_img">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        jQuery(".slideBox").slide({
+            mainCell : ".bd ul",
+            effect : "fold",
+            autoPlay : true,
+            trigger : "click"
+        });
+    </script> 
+</div>
+<!-- 滚动显示图片 END -->

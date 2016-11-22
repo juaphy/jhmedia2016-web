@@ -1,0 +1,108 @@
+<%var user = session.USER!"Admin"; %>
+<!-- 开始  左中模块 -->
+<div id="sidebar">
+    <div class="sidebox">
+        <span class="stitle">信息管理</span>
+
+    <!-- 导航条  -->
+    <div id="navigation">
+        <div class="sidenav"><!-- Sidenav -->
+        <div class="navhead"><span>新闻中心</span></div>
+            <div class="subnav">
+                <ul class="submenu">
+                    <li><a style="cursor:pointer;" id="add-news" >发布</a></li>
+                    <li><a style="cursor:pointer;" id="update-news" >修改</a></li>
+                    <li><a style="cursor:pointer;" id="listview-news" >一览</a></li>
+                </ul>
+            </div>
+        <div class="navhead"><span>产品介绍</span></div>
+            <div class="subnav">
+                <ul class="submenu">
+                    <li><a href="#" title="">发布</a></li>
+                    <li><a href="#" title="">修改</a></li>
+                    <li><a href="#" title="">一览</a></li>
+                </ul>
+            </div>
+        <div class="navhead"><span>成功案例</span></div>
+            <div class="subnav">
+                <ul class="submenu">
+                    <li><a href="#" title="">发布</a></li>
+                    <li><a href="#" title="">修改</a></li>
+                    <li><a href="#" title="">一览</a></li>
+                </ul>
+            </div>
+        <div class="navhead"><span>公司资质</span></div>
+            <div class="subnav">
+                <ul class="submenu">
+                    <li><a href="#" title="">发布</a></li>
+                    <li><a href="#" title="">修改</a></li>
+                    <li><a href="#" title="">一览</a></li>
+                </ul>
+           </div>
+        <div class="navhead"><span>招贤纳士</span></div>
+            <div class="subnav">
+                <ul class="submenu">
+                    <li><a href="#" title="">发布</a></li>
+                    <li><a href="#" title="">修改</a></li>
+                    <li><a href="#" title="">一览</a></li>
+                </ul>
+            </div>
+        <div class="navhead"><span>关于公司</span></div>
+            <div class="subnav">
+                <ul class="submenu">
+                    <li><a href="#" title="">公司简介</a></li>
+                    <li><a href="#" title="">公司售后</a></li>
+                    <li><a href="#" title="">联系我们</a></li> 
+                </ul>
+            </div>
+       <div class="navhead"><span>滚动广告</span></div>
+            <div class="subnav">
+                <ul class="submenu">
+                    <li><a style="cursor:pointer;"  id="publish-banners">发布</a></li>
+                    <li><a style="cursor:pointer;" >修改</a></li>
+                    <li><a style="cursor:pointer;" id="listview-banners">一览</a></li>
+                </ul>
+            </div>
+       <div class="navhead"><span>系统管理</span></div>
+        <div class="subnav">
+            <ul class="submenu">
+                <% if (1 == user.zhlx!) {%>
+                <li>
+                    <a onclick="toindex('/system_manage/zhgl/', this)"
+                       type="/system_manage/zhgl/" style="cursor:pointer;"
+                       id="zhgl">账号管理</a>
+                </li>
+                <li>
+                    <a onclick="toindex('/system/zhgl/addZh', this)"
+                       type="/system/zhgl/addZh" style="cursor:pointer;"
+                       id="zhgl">添加账号</a>
+                </li>
+                <%}%>
+                <li><a onclick="toindex('/system_manage/zhgl/toXgmm', this)"
+                    type="/system_manage/zhgl/toXgmm" style="cursor:pointer;"
+                    style="cursor:pointer;" id="xgmm">修改密码</a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    <!-- END 导航条 -->
+
+    </div>
+
+    <div class="sidebox">
+        <span class="stitle">日历</span>
+        <div id="datepicker"></div>
+    </div>
+
+    <div class="sidebox">
+        <p><b>当前版本： ver</b> 1.0</p>
+    </div>
+</div>
+<!-- END 左中模块 -->
+<script type="text/javascript">
+    function toindex(url, obj) {
+        if ($("#mainFrame")) {
+            $("#mainFrame").attr("src", url);
+        }
+    }
+</script>

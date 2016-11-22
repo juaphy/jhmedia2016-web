@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>信息管理-登录</title>
+
+    <!-- 浏览器选项卡图标 -->
+    <link rel="shortcut icon" href="/images/main/favicon.png" /> 
+
+    <!-- 链接css文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/login.css" />
+    
+    <!-- javaScript -->
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/layer/layer.js"></script>
+</head>
+<body>
+    <div id="container">
+        <img src="/images/main/logo.png" width="150"/>
+        <h1>信息管理系统</h1>
+        <div id="box">
+            <form action="/toLogin" method="post" id="loginForm">
+            <!-- Fieldset -->
+            <fieldset> 
+            <div class="input_field">
+            <p class="main">
+                <label>用户名: </label>
+                <input id="yhm" name="yhm" value="" class="input" />
+            </p>
+            <p class="main">
+                <label>密&nbsp;&nbsp;&nbsp;码: </label>
+                <input id="mm" type="password" name="mm" value="" class="input" />
+            </p>
+            <p class="main">
+                <label>验证码: </label>
+                <input id="scode" type="text" name="scode" value="" class="input" />
+                <img src="/code.do" id="codeImg" alt="看不清，换一张" style="cursor:pointer; margin-left:5px; margin-top:2px;"/>
+            </p>
+            <p class="space">
+                <span>
+                <input type="checkbox" name="param.remenberType" value="" />记住用户名</span>
+                <input type="submit" value="登录" class="login" id="login" onclick="return checkInput();return false;" />
+                <a href="/master/system/zhgl/addZh" style="color: gray;font-size: 12px;">申请账号</a>
+            </p>
+            </div>
+            </fieldset>
+            </form>
+
+            <!-- End of fieldset -->
+            <div style="margin-top:20px;">
+                <span id="errorMsg" class="error_msg" ></span>
+                <span id="messages">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            changeCode();
+            $("#codeImg").on("click", changeCode);
+            $("#loginForm").on("submit", login);
+        });
+
+        // check入力项
+        function checkInput() {
+            if (!check("#yhm","请输入用户名！")) {
+                return false;
+            }
+            if (!check("#mm","请输入密码！")) {
+                return false;
+            }
+            if (!check("#scode","请输入验证码！")) {
+                return false;
+            }
+            return true;
+        }
+
+        // 定义window作用域的函数
+        window.login = function(e) {
+            var username = $("#yhm").val();
+            var password = $("#mm").val();
+            var scode = $("#scode").val();
+    
+            // 提交表单
+            $.post(
+                "/toLogin",
+                {'yhm':username, 'mm':password, 'scode':scode},
+                function(data) {
+                    if (data.message != null && data.message != '') {
+                        layer.msg(data.message);
+
+                        // 刷新验证码
+                        changeCode();
+                    } else if (data.url != null && data.url != '') {
+                        window.location.href = data.url;
+                    } else {
+                        layer.msg("系统异常，请重新登录！");
+
+                        // 刷新验证码
+                        changeCode();
+                    }
+            },"json").fail(function() {
+                layer.msg("系统异常，请稍后再试。");
+            });
+            e && e.stopPropagation();
+            return false;
+        };
+
+        // check
+        function check(id,msg) {
+            if(isEmpty($(id).val())) {
+                layer.tips(msg, id,{
+                    tips:[2,'#FF5252'],
+                    time:3000
+                });
+                $(id).focus();
+                return false;
+            }
+            return true;
+        }
+
+        // 判断字符串是否为空
+        function isEmpty(obj) {
+            return obj == null || $.trim(obj) == "" || obj == "null";
+        }
+
+        // 更新验证码
+        function changeCode() {
+            $("#codeImg").attr("src", "/code.do?t=" + getTimestamp());
+        }
+
+        // 获取时间戳
+        function getTimestamp() {
+            var time = new Date();
+            return time.getTime();
+        }
+    </script>
+</body>
+</html>

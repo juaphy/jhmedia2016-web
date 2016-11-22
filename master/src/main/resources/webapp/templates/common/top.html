@@ -1,0 +1,28 @@
+<%var username = session.USERNAME!"Admin"; 
+var hours = date().hours;
+    if (6 <= hours && hours < 12) {
+        wenhao = "早上好，";
+    } else if(13 <= hours && hours <= 18) {
+        wenhao = "下午好，";
+    } else if(12 <= hours && hours < 13) {
+        wenhao = "中午好，";
+    } else if (17 <= hours && hours < 24) {
+        wenhao = "晚上好，";
+    } else if (24 <= hours && hours < 6) {
+        wenhao = "凌晨好，";
+    }
+%>
+<div id="header"> <!-- Header -->
+        <div id="title">
+            <img src="/images/main/logo.png" width="80"/>
+            <span>贵州小小马驹科技-信息管理系统</span>
+        </div>
+        <div class="logged">
+            <p>${wenhao!}
+            <a href="#" title="">
+            ${username!}
+            </a>!</p>
+            <p><a href="#">我的信息</a> | <a href="/loginOut" >退出</a></p>
+            <p>你有 <a href="#">12 条信息</a>!</p>
+        </div>
+</div>

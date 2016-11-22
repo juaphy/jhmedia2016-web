@@ -1,0 +1,48 @@
+@CHARSET "utf-8";
+/* index.jsp of CSS Document */
+
+/* center.jsp */
+/* 循环显示图片2 */
+bd_ul {
+    position: relative;
+    width: 365px;
+    height: 180px;
+}
+
+bd_li {
+    position: absolute;
+    width: 365px;
+    left: 0px;
+    top: 0px;
+    display: none;
+}
+
+bd_img {
+    width: 365px;
+    height: 180px;
+}
+
+/* banner.jsp */
+/* 滚动显示图片 */
+#bd_div_id {
+    height: 401.46875px;
+}
+
+#bd_div_id_ul {
+    position: relative;
+    width: 1329px;
+    height: 402px;
+}
+
+bd_div_id_ul_li {
+    position: absolute;
+    width: 1329px;
+    left: 0px;
+    top: 0px;
+    display: none;
+}
+
+bd_div_id_ul_li_img{
+    width: 1329px;
+    height: 401.46875px;
+}

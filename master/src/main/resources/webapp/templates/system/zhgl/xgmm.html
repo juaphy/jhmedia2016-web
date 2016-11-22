@@ -1,0 +1,93 @@
+<%layout("/common/layout.html") { %>
+<!-- [START 账号管理] -->
+<!-- [账号管理] -->
+<div id="xgmm" class="content">
+    <form action="#" method="post" id="form">
+    <!-- Content begins here -->
+    <h2>修改密码</h2>
+    <!-- Fieldset -->
+    <fieldset style="background: #252525;">
+        <div class="input_field">
+            <label for="sf">账号: <span class="field_desc">*</span></label>
+            <input class="smallfield" name="yhm" type="text" value="${zhxx.yhm!}" readonly="readonly" autocomplete="off" />
+            <input class="" name="yhid" type="hidden" value="${zhxx.yhid!}"  autocomplete="off" />
+        </div>
+
+        <div class="input_field">
+            <label for="sf">旧密码: <span class="field_desc">*</span></label>
+            <input class="smallfield" name="" type="password" value="" style="display: none;" />
+            <input class="smallfield" name="jmm" type="password" value="${zhxx.jmm}" />
+        </div>
+
+        <div class="input_field">
+            <label for="sf">新密码: <span class="field_desc">*</span></label>
+            <input class="smallfield" name="xmm" type="password" value="${zhxx.xmm}" />
+        </div>
+        <div class="input_field">
+            <label for="sf">确认新密码: <span class="field_desc">*</span></label>
+            <input class="smallfield" name="qrxmm" type="password" value="${zhxx.qrxmm}" />
+        </div>
+        <div class="input_field">
+            <label for="sf">&nbsp;</label>
+            <input class="submit" style="margin-top:0px;" type="button" value="提交" onclick="doXgmm()" />
+        </div>
+    </fieldset>
+    <!-- End of fieldset -->
+    <br />
+    </form>
+</div>
+<!-- [END 账号管理 一览] -->
+<script type="text/javascript">
+    $(function() {
+    });
+    function doXgmm() {
+    	var jmm = $("input[name=jmm]").val();
+    	var xmm = $("input[name=xmm]").val();
+    	var qrxmm = $("input[name=qrxmm]").val();
+    	if (jmm == null || jmm == '') {
+    		layer.tips("请输入旧密码！" ,"input[name=jmm]",{
+    			tips:[2,"RED"],
+    			time:3000
+    		});
+    		$("input[name=jmm]").focus();
+    		return false;
+    	}
+    	if (xmm == null || xmm == '') {
+    		layer.tips("请输入新密码！" ,"input[name=xmm]",{
+    			tips:[2,"RED"],
+    			time:3000
+    		});
+    		$("input[name=xmm]").focus();
+    		return false;
+    	}
+    	if (qrxmm == null || qrxmm == '') {
+    		layer.tips("请输入确认密码！" ,"input[name=qrxmm]",{
+    			tips:[2,"RED"],
+    			time:3000
+    		});
+    		$("input[name=qrxmm]").focus();
+    		return false;
+    	}
+    	if (qrxmm != xmm) {
+    		layer.msg("新密码、确认新密码不一致！");
+    		$("input[name=qrxmm]").focus();
+    		return false;
+    	}
+        layer.confirm('确认要修改吗？',{btn: ['是','否'] },function(){
+            $.ajax({
+                url:"/system_manage/zhgl/doXgmm",
+                type:"POST",
+                dataType:"json",
+                data:$("#form").serialize(),
+                success:function(data) {
+                    if (data.errormessage != null && data.errormessage != '') {
+                        layer.msg(data.errormessage);
+                    } else {
+                        layer.msg("修改成功！");
+                    }
+                }
+            });
+        });
+    }
+</script>
+<%}%>
